@@ -1,8 +1,11 @@
 package com.kubematics.ecommerce.config;
 
+import com.kubematics.ecommerce.entity.Country;
 import com.kubematics.ecommerce.entity.Product;
 import com.kubematics.ecommerce.entity.ProductCategory;
 import javax.persistence.metamodel.EntityType;
+
+import com.kubematics.ecommerce.entity.State;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -42,6 +45,14 @@ public class MyDataRestConfig implements RepositoryRestConfigurer {
         .withCollectionExposure((metadata, httpMethods) ->
                 httpMethods.disable(HttpMethod.POST,HttpMethod.PUT,HttpMethod.DELETE));
         config.forDomainType(ProductCategory.class).withItemExposure((metadata, httpMethods) ->
+                httpMethods.disable(HttpMethod.POST,HttpMethod.PUT,HttpMethod.DELETE))
+                .withCollectionExposure((metadata, httpMethods) ->
+                        httpMethods.disable(HttpMethod.POST,HttpMethod.PUT,HttpMethod.DELETE));
+        config.forDomainType(Country.class).withItemExposure((metadata, httpMethods) ->
+                httpMethods.disable(HttpMethod.POST,HttpMethod.PUT,HttpMethod.DELETE))
+                .withCollectionExposure((metadata, httpMethods) ->
+                        httpMethods.disable(HttpMethod.POST,HttpMethod.PUT,HttpMethod.DELETE));
+        config.forDomainType(State.class).withItemExposure((metadata, httpMethods) ->
                 httpMethods.disable(HttpMethod.POST,HttpMethod.PUT,HttpMethod.DELETE))
                 .withCollectionExposure((metadata, httpMethods) ->
                         httpMethods.disable(HttpMethod.POST,HttpMethod.PUT,HttpMethod.DELETE));
